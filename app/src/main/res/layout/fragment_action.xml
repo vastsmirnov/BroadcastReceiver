@@ -20,17 +20,26 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/message"
+                android:id="@+id/message_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_et_hint"
-                android:inputType="text" />
+                android:hint="@string/enter_message"
+                android:inputType="text"
+                android:importantForAutofill="no" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/send"
+                android:id="@+id/send_mb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/send" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/clear_mb"
+                android:backgroundTint="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/clear" />
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

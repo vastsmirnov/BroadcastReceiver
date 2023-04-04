@@ -21,6 +21,10 @@ class ActionFragment : Fragment() {
             false
         )
 
+        binding.clearMb.setOnClickListener {
+            binding.messageEt.setText("")
+        }
+
         return binding.root
     }
 

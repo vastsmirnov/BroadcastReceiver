@@ -21,10 +21,11 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
                 android:text="@string/message" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/message"
+                android:id="@+id/message_et"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
