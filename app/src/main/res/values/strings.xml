@@ -7,4 +7,6 @@
     <string name="enter_message">Введите сообщение</string>
     <string name="message_by_life_data">Live data:</string>
     <string name="send_live_data">Отправить (Live Data)</string>
+    <string name="send_event_bus">Отправить (Event bus)</string>
+    <string name="message_event_bus">Event bus:</string>
 </resources>

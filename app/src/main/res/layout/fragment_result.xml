@@ -30,7 +30,7 @@
                     android:textSize="18sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/message_by_object_mtv"
+                    android:id="@+id/message_object_mtv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp" />
@@ -48,7 +48,25 @@
                     android:textSize="18sp" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/message_by_life_data_mtv"
+                    android:id="@+id/message_life_data_mtv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/message_event_bus"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/message_event_bus_mtv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp" />

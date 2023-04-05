@@ -45,6 +45,17 @@ class ActionFragment : Fragment() {
                 }
             }
 
+            sendEventBus.setOnClickListener {
+                hideKeyboard(it)
+                val text = binding.messageEt.text.toString()
+
+                Intent().also { intent ->
+                    intent.action = EventBusBroadCastReceiver.EVENT_BUS_BROADCAST_RECEIVER_ACTION
+                    intent.putExtra(EventBusBroadCastReceiver.KEY_BROADCAST_TEXT, text)
+                    requireContext().sendBroadcast(intent)
+                }
+            }
+
             clearMb.setOnClickListener {
                 messageEt.setText("")
             }

@@ -10,12 +10,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.broadcastreceiver.databinding.FragmentResultBinding
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+
 
 class ResultFragment : Fragment() {
     private lateinit var binding: FragmentResultBinding
     private lateinit var objectBroadcastReceiver: BroadcastReceiver
 
     private val liveDataBroadCastReceiver = LiveDataBroadcastReceiver()
+    private val eventBusBroadcastReceiver = EventBusBroadCastReceiver()
+
     private var objectIntentFilter = IntentFilter(OBJECT_BROADCAST_RECEIVER_ACTION)
 
     override fun onCreateView(
@@ -33,21 +39,43 @@ class ResultFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        liveDataBroadCastReceiver.textLiveData.observe(viewLifecycleOwner) {
-            binding.messageByLifeDataMtv.text = it
-        }
-
         objectBroadcastReceiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
-                binding.messageByObjectMtv.text = intent.getStringExtra(KEY_BROADCAST_TEXT)
+                binding.messageObjectMtv.text = intent.getStringExtra(KEY_BROADCAST_TEXT)
             }
         }
 
+        liveDataBroadCastReceiver.textLiveData.observe(viewLifecycleOwner) {
+            binding.messageLifeDataMtv.text = it
+        }
+
+        registerBroadCastReceivers()
+    }
+
+    private fun registerBroadCastReceivers() {
         requireContext().registerReceiver(objectBroadcastReceiver, objectIntentFilter)
+
         requireContext().registerReceiver(
             liveDataBroadCastReceiver,
             LiveDataBroadcastReceiver.newIntentFilter()
         )
+
+        requireContext().registerReceiver(
+            eventBusBroadcastReceiver,
+            EventBusBroadCastReceiver.newIntentFilter()
+        )
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onPause() {
@@ -55,6 +83,12 @@ class ResultFragment : Fragment() {
 
         requireContext().unregisterReceiver(objectBroadcastReceiver)
         requireContext().unregisterReceiver(liveDataBroadCastReceiver)
+        requireContext().unregisterReceiver(eventBusBroadcastReceiver)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onTextEvent(event: TextEvent) {
+        binding.messageEventBusMtv.text = event.text
     }
 
     companion object {

@@ -40,6 +40,12 @@
                 android:text="@string/send_live_data"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/send_event_bus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/send_event_bus"/>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/clear_mb"
                 android:backgroundTint="@color/purple_700"
                 android:layout_width="match_parent"
