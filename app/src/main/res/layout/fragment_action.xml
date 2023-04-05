@@ -28,10 +28,22 @@
                 android:importantForAutofill="no" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/send_mb"
+                android:id="@+id/send_object_mb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/send" />
+                android:text="@string/send_object" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send_live_data_mb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/send_live_data"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/send_event_bus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/send_event_bus"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/clear_mb"
