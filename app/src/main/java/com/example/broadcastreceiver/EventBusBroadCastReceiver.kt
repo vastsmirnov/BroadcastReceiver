@@ -7,8 +7,8 @@ import android.content.IntentFilter
 import org.greenrobot.eventbus.EventBus
 
 class EventBusBroadCastReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
-        intent.getStringExtra(KEY_BROADCAST_TEXT)?.let {
+    override fun onReceive(context: Context?, intent: Intent?) {
+        intent?.getStringExtra(KEY_BROADCAST_TEXT)?.let {
             EventBus.getDefault().post(TextEvent(it))
         }
     }

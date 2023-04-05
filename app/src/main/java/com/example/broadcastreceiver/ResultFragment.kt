@@ -34,20 +34,24 @@ class ResultFragment : Fragment() {
             container,
             false
         )
-        return binding.root
-    }
 
-    override fun onResume() {
-        super.onResume()
         objectBroadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-                binding.messageObjectMtv.text = intent.getStringExtra(KEY_BROADCAST_TEXT)
+            override fun onReceive(context: Context?, intent: Intent?) {
+                intent?.let {
+                    binding.messageObjectMtv.text = it.getStringExtra(KEY_BROADCAST_TEXT)
+                }
             }
         }
 
         liveDataBroadCastReceiver.textLiveData.observe(viewLifecycleOwner) {
             binding.messageLifeDataMtv.text = it
         }
+
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         registerBroadCastReceivers()
     }

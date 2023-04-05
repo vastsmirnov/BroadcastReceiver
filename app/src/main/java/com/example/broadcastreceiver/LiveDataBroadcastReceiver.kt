@@ -11,8 +11,10 @@ class LiveDataBroadcastReceiver : BroadcastReceiver() {
     private val _textLiveData = MutableLiveData<String>()
     val textLiveData = _textLiveData as LiveData<String>
 
-    override fun onReceive(context: Context, intent: Intent) {
-        _textLiveData.value = intent.getStringExtra(KEY_BROADCAST_TEXT)
+    override fun onReceive(context: Context?, intent: Intent?) {
+        intent?.let {
+            _textLiveData.value = it.getStringExtra(KEY_BROADCAST_TEXT)
+        }
     }
 
     companion object {
