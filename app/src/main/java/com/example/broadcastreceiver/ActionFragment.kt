@@ -1,5 +1,6 @@
 package com.example.broadcastreceiver
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,16 +25,29 @@ class ActionFragment : Fragment() {
             false
         )
 
-        binding.sendMb.setOnClickListener {
-            hideKeyboard(it)
-            val text = binding.messageEt.text.toString()
-            requireContext().sendBroadcast(
-                ResultFragment.newBroadcastIntent(text)
-            )
-        }
+        with(binding) {
+            sendObjectMb.setOnClickListener {
+                hideKeyboard(it)
+                val text = binding.messageEt.text.toString()
+                requireContext().sendBroadcast(
+                    ResultFragment.newObjectBroadcastIntent(text)
+                )
+            }
 
-        binding.clearMb.setOnClickListener {
-            binding.messageEt.setText("")
+            sendLiveDataMb.setOnClickListener {
+                hideKeyboard(it)
+                val text = binding.messageEt.text.toString()
+
+                Intent().also { intent ->
+                    intent.action = LiveDataBroadcastReceiver.LIVE_DATA_BROADCAST_RECEIVER_ACTION
+                    intent.putExtra(LiveDataBroadcastReceiver.KEY_BROADCAST_TEXT, text)
+                    requireContext().sendBroadcast(intent)
+                }
+            }
+
+            clearMb.setOnClickListener {
+                messageEt.setText("")
+            }
         }
 
         return binding.root
